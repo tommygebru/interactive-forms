@@ -5,40 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Register for Full Stack Conf</title>
 	<link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 	<div class="container">
-    
+
     <header>
       <span>Register for</span>
       <h1>Full Stack Conf</h1>
     </header>
 
     <form action="index.html" method="post">
-              
-      <fieldset>         
+
+      <fieldset>
         <legend>Basic Info</legend>
-        
+
         <label for="name">Name:</label>
         <input type="text" id="name" name="user_name">
-        
+
         <label for="mail">Email:</label>
         <input type="email" id="mail" name="user_email">
-        
+
         <label for="title">Job Role</label>
         <select id="title" name="user_title">
           <option value="full-stack js developer">Full Stack JavaScript Developer</option>
           <option value="front-end developer">Front End Developer</option>
           <option value="back-end developer">Back End Developer</option>
-          <option value="designer">Designer</option>          
+          <option value="designer">Designer</option>
           <option value="student">Student</option>
-          <option value="other">Other</option>  
-        </select>           
+          <option value="other">Other</option>
+        </select>
       </fieldset>
-      
+
       <fieldset class="shirt">
         <legend>T-Shirt Info</legend>
-        
+
         <div>
           <label for="size">Size:</label>
           <select id="size" name="user_size">
@@ -62,13 +64,13 @@
           <label for="color">Color:</label>
           <select id="color">
             <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
-            <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option> 
-            <option value="gold">Gold (JS Puns shirt only)</option> 
+            <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
+            <option value="gold">Gold (JS Puns shirt only)</option>
             <option value="tomato">Tomato (I &#9829; JS shirt only)</option>
-            <option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option> 
-            <option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option> 
+            <option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>
+            <option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>
           </select>
-        </div>                
+        </div>
       </fieldset>
 
       <fieldset class="activities">
@@ -77,10 +79,10 @@
         <label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
         <label><input type="checkbox" name="js-libs"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
         <label><input type="checkbox" name="express"> Express Workshop — Tuesday 9am-12pm, $100</label>
-        <label><input type="checkbox" name="node"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>          
+        <label><input type="checkbox" name="node"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>
         <label><input type="checkbox" name="build-tools"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
         <label><input type="checkbox" name="npm"> npm Workshop — Wednesday 1pm-4pm, $100</label>
-                  	
+
       </fieldset>
       <fieldset>
         <legend>Payment Info</legend>
@@ -102,12 +104,12 @@
 
           <div class="col-3 col">
             <label for="zip">Zip Code:</label>
-            <input id="zip" name="user_zip" type="text"> 
+            <input id="zip" name="user_zip" type="text">
           </div>
 
           <div class="col-3 col">
             <label for="cvv">CVV:</label>
-            <input id="cvv" name="user_cvv" type="text"> 
+            <input id="cvv" name="user_cvv" type="text">
           </div>
 
           <label for="exp-month">Expiration Date:</label>
@@ -122,8 +124,8 @@
             <option value="8">8 - August</option>
             <option value="9">9 - September</option>
             <option value="10">10 - October</option>
-            <option value="11">11 - November</option>	
-            <option value="12">12 - December</option>          		          
+            <option value="11">11 - November</option>
+            <option value="12">12 - December</option>
           </select>
           <label for="exp-year">Expiration Year:</label>
           <select id="exp-year" name="user_exp-year">
@@ -131,24 +133,26 @@
             <option value="2017">2017</option>
             <option value="2018">2018</option>
             <option value="2019">2019</option>
-            <option value="2020">2020</option>        		          
-          </select> 	                  	         
+            <option value="2020">2020</option>
+          </select>
         </div>
 
         <div>
         	<p>If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click “Register” below.</p>
-        </div> 
+        </div>
 
         <div>
         	<p>If you selected the Bitcoin option we'll take you to the Coinbase site to set up your billing information. Due to the nature of exchanging Bitcoin, all Bitcoin transactions will be final.</p>
-        </div>                  
+        </div>
 
-      </fieldset>        
-        
+      </fieldset>
+
       <button type="submit">Register</button>
-      
+
     </form>
 
 	</div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
