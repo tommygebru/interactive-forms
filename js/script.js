@@ -28,4 +28,28 @@ $(document).ready(function() {
 			$("option[value='dimgrey']").show();
 		}
 	}); //change
+	//Create a calculator for the total activity costs
+
+
+
+
+	$(".activities label").change(event, () => {
+		if (event.target.checked == true) {
+      let activity = event.target.value;
+      console.log("text is ", activity);
+
+			//let prices = functionName.slice(-3);
+			$(".activities").append(`<h4> TOTAL:  </h4>`);
+		} else {
+			console.log("how do i create a returning text node so i can manipulate its string?");
+		}
+		//let calcTotal = 0;
+		//calcTotal+= Number(prices);
+		//console.log("calcTotal", calcTotal);
+		//add value to calculations
+		//else no value updated
+		//target input, upon change (if checked),
+		//splice the last 3 characters and include
+		//as "addition" entry for running total
+	}); //change
 }); //document.ready
