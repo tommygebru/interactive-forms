@@ -6,9 +6,9 @@ $(document).ready(function() {
 	$("#title").change(event, () => {
 		if (event.target.value === "other") {
 			$("#other-title").show();
-		}		else{
-					$("#other-title").hide();
-				}
+		} else {
+			$("#other-title").hide();
+		}
 	}); //change
 	//create a default option for the Color choices
 	$("#color").prepend(`<option value="other" selected>Choose a color</option>`);
@@ -30,26 +30,30 @@ $(document).ready(function() {
 			$("option[value='dimgrey']").show();
 		}
 	}); //change
-
-  let calcTotal = 0;
-  $(".activities").append(`<h4></h4>`);
-
+	let calcTotal = 0;
+	$(".activities").append(`<h4></h4>`);
 	//Create a calculator for the total activity costs
 	$(".activities input").change(event, () => {
 		let activity = event.target.parentNode.innerHTML;
 		let prices = activity.slice(-3);
-				if (event.target.checked == true) {
-		      calcTotal += Number(prices);
-					$(".activities h4").text(`TOTAL: ${calcTotal}`);
-					console.log(calcTotal, "added");
-				} else {
-					calcTotal -= Number(prices);
-					$(".activities h4").text(`TOTAL: ${calcTotal}`);
-					console.log(calcTotal, "removed");
-				}
-			}); //change
-
-
-
-
+		if (event.target.checked == true) {
+			calcTotal += Number(prices);
+			$(".activities h4").text(`TOTAL: ${calcTotal}`);
+			console.log(calcTotal, "added");
+			let tuesdayAm = activity.slice(0);
+			console.log(tuesdayAm);
+			console.log(tuesdayAm, tuesdayAm.test("/(Tuesday\s9am-12pm)/"));
+			if (tuesdayAm.test("/(Tuesday\s9am-12pm)/")) {
+				console.log("good work, keep moving");
+			}
+			//if regex == string match 9am
+			//toggle other regex for 9am
+			//if regex == string match for 1pm
+			//toggle other regex for 9am
+		} else {
+			calcTotal -= Number(prices);
+			$(".activities h4").text(`TOTAL: ${calcTotal}`);
+			console.log(calcTotal, "removed");
+		}
+	}); //change
 }); //document.ready
