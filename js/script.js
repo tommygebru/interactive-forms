@@ -40,16 +40,45 @@ $(document).ready(function() {
 			calcTotal += Number(prices);
 			$(".activities h4").text(`TOTAL: ${calcTotal}`);
 			console.log(calcTotal, "added");
+			//retrieve whole strings for both AM and PM
 			let tuesdayAm = activity.slice(0);
-			console.log(tuesdayAm);
-			console.log(tuesdayAm, tuesdayAm.test("/(Tuesday\s9am-12pm)/"));
-			if (tuesdayAm.test("/(Tuesday\s9am-12pm)/")) {
-				console.log("good work, keep moving");
-			}
-			//if regex == string match 9am
-			//toggle other regex for 9am
-			//if regex == string match for 1pm
-			//toggle other regex for 9am
+			let tuesdayPm = activity.slice(0);
+
+			//set regex
+			let tuesdayAmRegex = /(Tuesday\s9am-12pm)/;
+			let tuesdayPmRegex = /(Tuesday\s1pm-4pm)/;
+			//test regex
+			console.log("am", tuesdayAmRegex.test(tuesdayAm));
+			console.log("pm", tuesdayPmRegex.test(tuesdayPm));
+
+
+
+						if (tuesdayAmRegex.test(tuesdayAm)){
+							 if(".activities [name='js-framework']"){
+								 $(".activities [name='express']").prop({disabled: true});
+								 $(".activities [name='js-frameworks']").prop({disabled: false});
+							 }else if(".activities [name='express']"){
+								 $(".activities [name='js-frameworks']").prop({disabled: true});
+								 $(".activities [name='express']").prop({disabled: false});
+							 }
+						}
+						else if(tuesdayPmRegex.test(tuesdayPm)){
+							if(".activities [name='js-libs']"){
+								$(".activities [name='node']").prop({disabled: true});
+								$(".activities [name='js-libs']").prop({disabled: false});
+
+							}else if(".activities [name='node']"){
+								$(".activities [name='js-libs']").prop({disabled: true});
+								$(".activities [name='js-node']").prop({disabled: false});
+
+							}
+
+						}
+						//if regex == string match 9am
+						//toggle other regex for 9am
+						//if regex == string match for 1pm
+						//toggle other regex for 9am
+
 		} else {
 			calcTotal -= Number(prices);
 			$(".activities h4").text(`TOTAL: ${calcTotal}`);
