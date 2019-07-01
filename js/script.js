@@ -6,7 +6,9 @@ $(document).ready(function() {
 	$("#title").change(event, () => {
 		if (event.target.value === "other") {
 			$("#other-title").show();
-		} //if
+		}		else{
+					$("#other-title").hide();
+				}
 	}); //change
 	//create a default option for the Color choices
 	$("#color").prepend(`<option value="other" selected>Choose a color</option>`);
@@ -30,20 +32,22 @@ $(document).ready(function() {
 	}); //change
 
   let calcTotal = 0;
-  $(".activities").append(`<h4> TOTAL: ${calcTotal} </h4>`);
+  $(".activities").append(`<h4></h4>`);
 
 	//Create a calculator for the total activity costs
 	$(".activities input").change(event, () => {
-		if (event.target.checked == true) {
-      let activity = event.target.parentNode.innerHTML;
-      let prices = activity.slice(-3);
-      let price = Number(prices);
-      console.log(calcTotal += price);
-		} else {
-			console.log("no update to price");
-		}
-    calcTotal = price;
-	}); //change
+		let activity = event.target.parentNode.innerHTML;
+		let prices = activity.slice(-3);
+				if (event.target.checked == true) {
+		      calcTotal += Number(prices);
+					$(".activities h4").text(`TOTAL: ${calcTotal}`);
+					console.log(calcTotal, "added");
+				} else {
+					calcTotal -= Number(prices);
+					$(".activities h4").text(`TOTAL: ${calcTotal}`);
+					console.log(calcTotal, "removed");
+				}
+			}); //change
 
 
 
