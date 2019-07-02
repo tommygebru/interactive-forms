@@ -10,7 +10,6 @@ $(document).ready(function() {
 			$("#other-title").hide();
 		}
 	}); //change
-
 	//create a default option for the Color choices
 	$("#color").prepend(`<option value="other" selected>Choose a color</option>`);
 	//if selecting js puns hide just tshirt, else show puns
@@ -31,7 +30,6 @@ $(document).ready(function() {
 			$("option[value='dimgrey']").show();
 		}
 	}); //change
-
 	//Create a calculator for the total activity costs
 	let calcTotal = 0;
 	$(".activities").append(`<h4>TOTAL: </h4>`);
@@ -48,21 +46,24 @@ $(document).ready(function() {
 			console.log(calcTotal, "removed");
 		}
 	}); //change
-
-//Toggle conflicting schedules for activities section
-	$(".activities input").change(event,()=>{
-if(event.target.name === "js-frameworks"){
-	$("input[name='express']").prop({disabled: true});
-}
-else if(event.target.name === "express"){
-	$("input[name='js-frameworks']").prop({disabled: true});
-}
-else if(event.target.name === "js-libs"){
-	$("input[name='node']").prop({disabled: true});
-}
-else if(event.target.name === "node"){
-	$("input[name='js-libs']").prop({disabled: true});
-}
-	});//change
-
+	//Toggle conflicting schedules for activities section
+	$(".activities input").change(event, () => {
+		if (event.target.name === "js-frameworks") {
+			$("input[name='express']").prop({
+				disabled: true
+			});
+		} else if (event.target.name === "express") {
+			$("input[name='js-frameworks']").prop({
+				disabled: true
+			});
+		} else if (event.target.name === "js-libs") {
+			$("input[name='node']").prop({
+				disabled: true
+			});
+		} else if (event.target.name === "node") {
+			$("input[name='js-libs']").prop({
+				disabled: true
+			});
+		}
+	}); //change
 }); //document.ready
