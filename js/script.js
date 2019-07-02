@@ -38,11 +38,11 @@ $(document).ready(function() {
 		let prices = activity.slice(-3);
 		if (event.target.checked == true) {
 			calcTotal += Number(prices);
-			$(".activities h4").text(`TOTAL: $${calcTotal}`)
+			$(".activities h4").html(`TOTAL: $${calcTotal}`);
 			console.log(calcTotal, "added");
 		} else {
 			calcTotal -= Number(prices);
-			$(".activities h4").text(`TOTAL: $${calcTotal}`)
+			$(".activities h4").html(`TOTAL $${calcTotal}`);
 			console.log(calcTotal, "removed");
 		}
 	}); //change
@@ -66,4 +66,27 @@ $(document).ready(function() {
 			});
 		}
 	}); //change
+
+
+//Dynamically toggle the payment options based on selection
+$("#payment option").change(event, ()=>{
+//default is credit card payment
+console.log(event.target);
+if(event.target.value === "credit card")
+{
+	$("#credit-card").hide();
+}
+
+});
+
+//if selection is paypal
+//set the link of the register button to paypal
+
+
+//if selection is bitcoin
+//set the link of the register button to coinbase
+
+
+
+
 }); //document.ready
