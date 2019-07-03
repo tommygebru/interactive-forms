@@ -10,6 +10,7 @@ $(document).ready(function() {
 			$("#other-title").hide();
 		}
 	}); //change
+
 	//create a default option for the Color choices
 	$("#color").prepend(`<option value="other" selected>Choose a color</option>`);
 	//if selecting js puns hide just tshirt, else show puns
@@ -30,6 +31,7 @@ $(document).ready(function() {
 			$("option[value='dimgrey']").show();
 		}
 	}); //change
+
 	//Create a calculator for the total activity costs
 	let calcTotal = 0;
 	$(".activities").append(`<h4>TOTAL: </h4>`);
@@ -46,6 +48,7 @@ $(document).ready(function() {
 			console.log(calcTotal, "removed");
 		}
 	}); //change
+
 	//Toggle conflicting schedules for activities section
 	$(".activities input").change(event, () => {
 		if (event.target.name === "js-frameworks") {
@@ -66,11 +69,12 @@ $(document).ready(function() {
 			});
 		}
 	}); //change
+
 	const paypal = $("#credit-card").next();
 	const bitcoin = $("#credit-card").next().next();
 	paypal.attr("id", "paypal");
 	bitcoin.attr("id", "bitcoin");
-	$("#credit-card").hide();
+	$("#credit-card").show();
 	$("#paypal").hide();
 	$("#bitcoin").hide();
 	//Dynamically toggle the payment options based on selection
@@ -97,4 +101,6 @@ $(document).ready(function() {
 			$("#bitcoin").show();
 		}
 	});
+
+
 }); //document.ready
