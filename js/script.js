@@ -66,27 +66,35 @@ $(document).ready(function() {
 			});
 		}
 	}); //change
-
-
-//Dynamically toggle the payment options based on selection
-$("#payment option").change(event, ()=>{
-//default is credit card payment
-console.log(event.target);
-if(event.target.value === "credit card")
-{
+	const paypal = $("#credit-card").next();
+	const bitcoin = $("#credit-card").next().next();
+	paypal.attr("id", "paypal");
+	bitcoin.attr("id", "bitcoin");
 	$("#credit-card").hide();
-}
-
-});
-
-//if selection is paypal
-//set the link of the register button to paypal
-
-
-//if selection is bitcoin
-//set the link of the register button to coinbase
-
-
-
-
+	$("#paypal").hide();
+	$("#bitcoin").hide();
+	//Dynamically toggle the payment options based on selection
+	$("#payment").change(event, () => {
+		//if selection is credit card
+		//remove any current links
+		if (event.target.value === "credit card") {
+			$("#credit-card").show();
+			$("#paypal").hide();
+			$("#bitcoin").hide();
+		}
+		//if selection is paypal
+		//set the link of the register button to paypal
+		else if (event.target.value === "paypal") {
+			$("#credit-card").hide();
+			$("#paypal").show();
+			$("#bitcoin").hide();
+		}
+		//if selection is bitcoin
+		//set the link of the register button to coinbase
+		else if (event.target.value === "bitcoin") {
+			$("#credit-card").hide();
+			$("#paypal").hide();
+			$("#bitcoin").show();
+		}
+	});
 }); //document.ready
