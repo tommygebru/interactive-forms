@@ -132,73 +132,39 @@ let email = $("#mail").val();
 //$("")
 //IF THE CREDIT CARD PAYMENT IS SELECTED BEGIN VALIDATION OF THE FOLLOWING
 $("#payment").change(event, () => {
-$("#cc-num").focus(()=>{
-//#("#cc-num").attr("maxlength", 16);
+
 document.getElementById('cc-num').setAttribute('maxlength', 16);
-
-$("#cc-num").css("border", "solid #FF1493	2px");
-$("#credit-card input").not($("#cc-num")).css("border", "solid #F4F6F6	2px");
-
 $("#cc-num").keyup(()=>{
+$("#credit-card input").not($("#cc-num")).css("border", "solid #F4F6F6	2px");
 let regex = /([0-9]{13,16})/;
 let stringIs = $("#cc-num").val();
 let bool = regex.test(stringIs);
-console.log(`cc-num values are, ${stringIs} and the length is ${stringIs.length} and the regex test returns ${regex.test(stringIs)}`);
-if(bool){
-$("#cc-num").css("border", "solid #F4F6F6	2px");
-}//if
+if(bool){$("#cc-num").css("border", "solid #F4F6F6	2px");
+}else{$("#cc-num").css("border", "solid #FF1493	2px");}
 });//keyup
-});//focus
 
-
-
-
-
-
-
-
-$("#zip").focus(()=>{
 document.getElementById('zip').setAttribute('maxlength', 5);
-
-$("#zip").css("border", "solid #FF1493	2px");
-$("#credit-card input").not($("#zip")).css("border", "solid #F4F6F6	2px");
-
 $("#zip").keyup(()=>{
+$("#credit-card input").not($("#zip")).css("border", "solid #F4F6F6	2px");
 let regex = /([0-9]{5})/;
 let stringIs = $("#zip").val();
 let bool = regex.test(stringIs);
-console.log(`zipcode values are, ${stringIs} and the length is ${stringIs.length} and the regex test returns ${regex.test(stringIs)}`);
-if(bool){
-$("#zip").css("border", "solid #F4F6F6	2px");
-}//if
+if(bool){$("#zip").css("border", "solid #F4F6F6	2px");
+}else{$("#zip").css("border", "solid #FF1493	2px");
+}
 });//keyup
 
-
-});//focus
-$("#cvv").focus(()=>{
 document.getElementById('cvv').setAttribute('maxlength', 3);
-
-$("#cvv").css("border", "solid #FF1493	2px");
-$("#credit-card input").not($("#cvv")).css("border", "solid #F4F6F6	2px");
-
 $("#cvv").keyup(()=>{
+$("#credit-card input").not($("#cvv")).css("border", "solid #F4F6F6	2px");
 let regex = /([0-9]{3})/;
 let stringIs = $("#cvv").val();
 let bool = regex.test(stringIs);
-console.log(`CVV values are, ${stringIs} and the length is ${stringIs.length} and the regex test returns ${regex.test(stringIs)}`);
-if(bool){
-$("#cvv").css("border", "solid #F4F6F6	2px");
+if(bool){$("#cvv").css("border", "solid #F4F6F6	2px");
+}else{$("#cvv").css("border", "solid #FF1493	2px");
 }//if
 });//keyup
-});//focus
 
-//}//if
 });//change
-//Credit Card is 13 and 16 digits.
-//Zip code is 5 digits
-//CVV code is 3 digits
-
-//Create your own custom validation checks and error messages!!
-
 
 }); //document.ready
