@@ -10,7 +10,6 @@ $(document).ready(function() {
 			$("#other-title").hide();
 		}
 	}); //change
-
 	//create a default option for the Color choices
 	$("#color").prepend(`<option value="other" selected>Choose a color</option>`);
 	//if selecting js puns hide just tshirt, else show puns
@@ -31,7 +30,6 @@ $(document).ready(function() {
 			$("option[value='dimgrey']").show();
 		}
 	}); //change
-
 	//Create a calculator for the total activity costs
 	let calcTotal = 0;
 	$(".activities").append(`<h4>TOTAL: </h4>`);
@@ -41,14 +39,13 @@ $(document).ready(function() {
 		if (event.target.checked == true) {
 			calcTotal += Number(prices);
 			$(".activities h4").html(`TOTAL: $${calcTotal}`);
-		//	console.log(calcTotal, "added");
+			//	console.log(calcTotal, "added");
 		} else {
 			calcTotal -= Number(prices);
 			$(".activities h4").html(`TOTAL $${calcTotal}`);
-		//	console.log(calcTotal, "removed");
+			//	console.log(calcTotal, "removed");
 		}
 	}); //change
-
 	//Toggle conflicting schedules for activities section
 	$(".activities input").change(event, () => {
 		if (event.target.name === "js-frameworks") {
@@ -69,7 +66,6 @@ $(document).ready(function() {
 			});
 		}
 	}); //change
-
 	const paypal = $("#credit-card").next();
 	const bitcoin = $("#credit-card").next().next();
 	paypal.attr("id", "paypal");
@@ -101,86 +97,90 @@ $(document).ready(function() {
 			$("#bitcoin").show();
 		}
 	});
-
-
-//IF THE CREDIT CARD PAYMENT IS SELECTED BEGIN VALIDATION OF THE FOLLOWING
-$("#payment").change(event, () => {
-let isCard = $("option[value='credit card']");
-	if(isCard.is(":selected")){
-		$("button").prop("disable", true).css("background", "orange");
-$("#cc-num").focus();
-
-
-		document.getElementById('cc-num').setAttribute('maxlength', 16);
-		$("#cc-num").keyup(()=>{
-		$("#credit-card input").not($("#cc-num")).css("border", "solid #F4F6F6	2px");
-		let regex = /([0-9]{13,16})/;
-		let stringIs = $("#cc-num").val();
-		let bool = regex.test(stringIs);
-		if(bool){$("#cc-num").css("border", "solid #F4F6F6	2px");
-		$("button").prop("disable", false).css("background", "#083f57");
-		$("#zip").focus();
-		}else{$("#cc-num").css("border", "solid #FF1493	2px");
-		$("button").prop("disable", true).css("background", "orange");
+	//IF THE CREDIT CARD PAYMENT IS SELECTED BEGIN VALIDATION OF THE FOLLOWING
+	$("#payment").change(event, () => {
+		let isCard = $("option[value='credit card']");
+		if (isCard.is(":selected")) {
+			$("button").prop("disable", true).css("background", "orange");
+			$("#cc-num").focus();
+			document.getElementById('cc-num').setAttribute('maxlength', 16);
+			$("#cc-num").keyup(() => {
+				$("#credit-card input").not($("#cc-num")).css("border", "solid #F4F6F6	2px");
+				let regex = /([0-9]{13,16})/;
+				let stringIs = $("#cc-num").val();
+				let bool = regex.test(stringIs);
+				if (bool) {
+					$("#cc-num").css("border", "solid #F4F6F6	2px");
+					$("button").prop("disable", false).css("background", "#083f57");
+					$("#zip").focus();
+				} else {
+					$("#cc-num").css("border", "solid #FF1493	2px");
+					$("button").prop("disable", true).css("background", "orange");
+				}
+			}); //keyup
+			document.getElementById('zip').setAttribute('maxlength', 5);
+			$("#zip").keyup(() => {
+				$("#credit-card input").not($("#zip")).css("border", "solid #F4F6F6	2px");
+				let regex = /([0-9]{5})/;
+				let stringIs = $("#zip").val();
+				let bool = regex.test(stringIs);
+				if (bool) {
+					$("#zip").css("border", "solid #F4F6F6	2px");
+					$("button").prop("disable", false).css("background", "#083f57");
+					$("#cvv").focus();
+				} else {
+					$("#zip").css("border", "solid #FF1493	2px");
+					$("button").prop("disable", true).css("background", "orange");
+				} //if
+			}); //keyup
+			document.getElementById('cvv').setAttribute('maxlength', 3);
+			$("#cvv").keyup(() => {
+				$("#credit-card input").not($("#cvv")).css("border", "solid #F4F6F6	2px");
+				let regex = /([0-9]{3})/;
+				let stringIs = $("#cvv").val();
+				let bool = regex.test(stringIs);
+				if (bool) {
+					$("#cvv").css("border", "solid #F4F6F6	2px");
+					$("button").prop("disable", false).css("background", "#083f57");
+				} else {
+					$("#cvv").css("border", "solid #FF1493	2px");
+					$("button").prop("disable", true).css("background", "orange");
+				} //if
+			}); //keyup
+		} else {
+			$("button").prop("disable", false).css("background", "#083f57");
+		} //if
+	}); //change
+	//Form Validations - B U T T O N
+	$("button").click(event, () => {
+		event.preventDefault();
+		//name field cannot be blank
+		let namestring = $("#name").val();
+		if (namestring.length > 0) {
+			event.preventDefault();
+			$("button").prop("disable", false).css("background", "#083f57");
+		} else {
+			event.preventDefault();
+			$("button").prop("disable", true).css("background", "orange");
 		}
-		});//keyup
-
-		document.getElementById('zip').setAttribute('maxlength', 5);
-		$("#zip").keyup(()=>{
-		$("#credit-card input").not($("#zip")).css("border", "solid #F4F6F6	2px");
-		let regex = /([0-9]{5})/;
-		let stringIs = $("#zip").val();
-		let bool = regex.test(stringIs);
-		if(bool){$("#zip").css("border", "solid #F4F6F6	2px");
-		$("button").prop("disable", false).css("background", "#083f57");
-		$("#cvv").focus();
-		}else{$("#zip").css("border", "solid #FF1493	2px");
-		$("button").prop("disable", true).css("background", "orange");
-		}//if
-		});//keyup
-
-		document.getElementById('cvv').setAttribute('maxlength', 3);
-		$("#cvv").keyup(()=>{
-		$("#credit-card input").not($("#cvv")).css("border", "solid #F4F6F6	2px");
-		let regex = /([0-9]{3})/;
-		let stringIs = $("#cvv").val();
-		let bool = regex.test(stringIs);
-		if(bool){$("#cvv").css("border", "solid #F4F6F6	2px");
-		$("button").prop("disable", false).css("background", "#083f57");
-		}else{$("#cvv").css("border", "solid #FF1493	2px");
-		$("button").prop("disable", true).css("background", "orange");
-		}//if
-		});//keyup
-	}else{
-$("button").prop("disable", false).css("background", "#083f57");
-}//if
-});//change
-
-//Form Validations - B U T T O N
-$("button").click(event, ()=>{
-	event.preventDefault();
-//name field cannot be blank
-let namestring = $("#name").val();
-if(namestring.length>0){event.preventDefault();
-$("button").prop("disable", false).css("background", "#083f57");
-}else{event.preventDefault();
-$("button").prop("disable", true).css("background", "orange");}
-
-//email field must have valid formatting
-let email = $("#mail").val();
-let regexmail = /[a-z]+\@[a-z]+\.com/i;
-if(regexmail.test(email)){event.preventDefault();
-$("button").prop("disable", false).css("background", "#083f57");
-}else{event.preventDefault();
-$("button").prop("disable", true).css("background", "orange");}
-
-//at least one checkboxes must be checked
-if($("input").is(":checked")){event.preventDefault();
-$("button").prop("disable", false).css("background", "#083f57");
-}else{event.preventDefault();
-$("button").prop("disable", true).css("background", "orange");}
-
-//Credit card validation has been grouped with the keyup functions
-});//click event
-
+		//email field must have valid formatting
+		let email = $("#mail").val();
+		let regexmail = /[a-z]+\@[a-z]+\.com/i;
+		if (regexmail.test(email)) {
+			event.preventDefault();
+			$("button").prop("disable", false).css("background", "#083f57");
+		} else {
+			event.preventDefault();
+			$("button").prop("disable", true).css("background", "orange");
+		}
+		//at least one checkboxes must be checked
+		if ($("input").is(":checked")) {
+			event.preventDefault();
+			$("button").prop("disable", false).css("background", "#083f57");
+		} else {
+			event.preventDefault();
+			$("button").prop("disable", true).css("background", "orange");
+		}
+		//Credit card validation has been grouped with the keyup functions
+	}); //click event
 }); //document.ready*/
