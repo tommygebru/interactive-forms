@@ -102,34 +102,7 @@ $(document).ready(function() {
 		}
 	});
 
-//Set button state for Register
-const button = document.getElementsByTagName("button");
-const buttonEn = $("button").prop("disable", false);
-const buttonDis = $("button").prop("disable", true).css("background", "orange");
-buttonDis;
 
-
-//Form Validations
-//name field cannot be blank
-let namestring = $("#name").val();
-//let regexname = //;
-//namestring.test(regexname);
-if(namestring.length<=0){
-$("button").prop("disable", true);
-}
-
-//email field must have valid formatting
-let email = $("#mail").val();
-//let regexmail = //;
-//mailstring.test(regexmail);
-
-//at least one checkboxes must be checked
-
-
-
-
-
-//$("")
 //IF THE CREDIT CARD PAYMENT IS SELECTED BEGIN VALIDATION OF THE FOLLOWING
 $("#payment").change(event, () => {
 
@@ -166,5 +139,35 @@ if(bool){$("#cvv").css("border", "solid #F4F6F6	2px");
 });//keyup
 
 });//change
+
+
+
+//button deactivated unless
+//it passes tests for all page sections
+//then button is available
+
+
+//Set button state for Register
+const button = document.getElementsByTagName("button");
+const buttonEn = $("button").prop("disable", false);
+const buttonDis = $("button").prop("disable", true).css("background", "orange");
+buttonDis;
+
+
+//Form Validations
+//name field cannot be blank
+let namestring = $("#name").val();
+//let regexname = //;
+//namestring.test(regexname);
+if(namestring.length<=0){
+$("button").prop("disable", true);
+}
+//email field must have valid formatting
+let email = $("#mail").val();
+//let regexmail = //;
+//mailstring.test(regexmail);
+
+//at least one checkboxes must be checked
+
 
 }); //document.ready
