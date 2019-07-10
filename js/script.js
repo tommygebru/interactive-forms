@@ -41,11 +41,11 @@ $(document).ready(function() {
 		if (event.target.checked == true) {
 			calcTotal += Number(prices);
 			$(".activities h4").html(`TOTAL: $${calcTotal}`);
-			console.log(calcTotal, "added");
+		//	console.log(calcTotal, "added");
 		} else {
 			calcTotal -= Number(prices);
 			$(".activities h4").html(`TOTAL $${calcTotal}`);
-			console.log(calcTotal, "removed");
+		//	console.log(calcTotal, "removed");
 		}
 	}); //change
 
@@ -142,32 +142,37 @@ if(bool){$("#cvv").css("border", "solid #F4F6F6	2px");
 
 
 
-//button deactivated unless
-//it passes tests for all page sections
-//then button is available
 
 
 //Set button state for Register
-const button = document.getElementsByTagName("button");
-const buttonEn = $("button").prop("disable", false);
-const buttonDis = $("button").prop("disable", true).css("background", "orange");
-buttonDis;
+//const button = document.getElementsByTagName("button");
+//blue is working test
+//const buttonEn = $("button").prop("disable", false).css("background", "#083f57");
+//orange is failing test
+//const buttonDis = $("button").prop("disable", true).css("background", "orange");
 
 
-//Form Validations
+//Form Validations - B U T T O N
+$("button").click(event, ()=>{
 //name field cannot be blank
+/*
 let namestring = $("#name").val();
-//let regexname = //;
-//namestring.test(regexname);
-if(namestring.length<=0){
-$("button").prop("disable", true);
-}
+if(namestring.length>0){event.preventDefault();
+$("button").prop("disable", false).css("background", "#083f57");
+}else{event.preventDefault();
+$("button").prop("disable", true).css("background", "orange");}
+*/
 //email field must have valid formatting
+/*
 let email = $("#mail").val();
-//let regexmail = //;
-//mailstring.test(regexmail);
+let regexmail = /[a-z]+\@[a-z]+\.com/i;
+if(regexmail.test(email)){event.preventDefault();
+$("button").prop("disable", false).css("background", "#083f57");
+}else{event.preventDefault();
+$("button").prop("disable", true).css("background", "orange");}
+*/
 
 //at least one checkboxes must be checked
-
+});//click event
 
 }); //document.ready
