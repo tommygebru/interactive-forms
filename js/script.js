@@ -42,7 +42,7 @@ $(document).ready(() => {
 	}); //keyup
 	*//**********************************************
 		E M A I L
-	**********************************************/
+	**********************************************//*
 	if (email.val().length === 0) {
 		email.css("border", orange);
 		invalid();
@@ -58,6 +58,22 @@ $(document).ready(() => {
 			invalid();
 		}
 	});
+*//***********************************************
+	J O B    R O L E
+**********************************************//*
+$("#other-title").hide();
+//upon changing the selection drop down, show text field
+$("#title").change(event, () => {
+	if (event.target.value === "other") {
+		$("#other-title").show();
+	} else {
+		$("#other-title").hide();
+	}
+}); //change
+/***********************************************
+	T S H I R T S
+**********************************************/
+
 
 
 
