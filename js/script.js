@@ -7,6 +7,8 @@ $(document).ready(() => {
 	const blue = "solid #5e97b0 2px";
 	const name = $("#name");
 	const btn = $("button");
+	const email = $("#mail");
+
 	btn.click(event, () => {
 		event.preventDefault();
 	});
@@ -26,34 +28,36 @@ $(document).ready(() => {
 	**********************************************//*
 	name.focus();
 	if (name.val().length === 0) {
-		console.log(1);
 		name.css("border", orange);
 		invalid();
-		console.log(1);
 	} //if
 	name.keyup(() => {
 		if (name.val().length === 0) {
-			console.log(2);
 			name.css("border", orange);
 			invalid();
-			console.log(2);
 		} else {
 			name.css("border", blue);
-			console.log(3);
 			valid();
-			console.log(3);
 		} //else
 	}); //keyup
 	*//**********************************************
 		E M A I L
 	**********************************************/
-
-
-
-
-
-
-
+	if (email.val().length === 0) {
+		email.css("border", orange);
+		invalid();
+	} //if
+	email.keyup(()=>{
+		let string = email.val();
+		let regexmail = /^([a-z]+\@[a-z]+\.com)$/i;
+		if (regexmail.test(string)){
+			email.css("border", blue);
+			valid();
+		} else {
+			email.css("border", orange);
+			invalid();
+		}
+	});
 
 
 
