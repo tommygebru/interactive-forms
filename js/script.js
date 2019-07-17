@@ -108,6 +108,7 @@ $(document).ready(() => {
 		A C T I V I T I E S
 	**********************************************/
 	//Create a calculator for the total activity costs
+	/*
 	let calcTotal = 0;
 	$(".activities").append(`<h4>TOTAL: </h4>`);
 	$(".activities input").change(event, () => {
@@ -130,10 +131,128 @@ btn.click(()=>{
 	}else if(calcTotal !==0){
 		$(".activities h3").remove();
 		valid();
-
 	}
-});
+}); //click
+*/
 
 
+/*
+//Toggle conflicting schedules for activities section
+$(".activities input").click(event, () => {
+	if (event.target.name === "js-frameworks") {
+
+		$("input[name='express']").prop({
+			disabled: true
+		})
+
+		$("input[name='express']").prop().toggle()
+	//	$("input[type='checkbox']:checked").click(()=>{
+		//	$("input[name='express']").prop({
+		//		disabled: false
+		//	})
+	//	});
+
+	} else if (event.target.name === "express") {
+		$("input[name='js-frameworks']").prop({
+			disabled: true
+		})
+	} else if (event.target.name === "js-libs") {
+		$("input[name='node']").prop({
+			disabled: true
+		})
+	} else if (event.target.name === "node") {
+		$("input[name='js-libs']").prop({
+			disabled: true
+		})
+	}
+}); //change
+
+*/
+
+
+
+$(".activities input").change(event, ()=>{
+//	if(event.target.checked){console.log("TOTALLY checked");
+	//if((event.target).is(":checked")){console.log("TOTALLY checked");
+	if (event.target.name === "js-frameworks" && event.target.checked) {
+		$("input[name='express']").prop({
+			disabled: true
+		})
+//}//if
+}//if
+	else if(event.target.checked){
+		console.log("NOT checked");
+									if (event.target.name === "express") {
+									 $("input[name='js-frameworks']").prop({
+										 disabled: true
+									 })
+									}//if
+
+		}//else  if
+});//change
+/*
+if($("input").is(":checked")){console.log("TOTALLY checked");
+//	if($(".activities input").is(":checked")){
+
+//Toggle conflicting schedules for activities section
+console.log("this is fine");
+$(".activities input").click(event, () => {
+	console.log("OK im here");
+	if (event.target.name === "js-frameworks") {
+		$("input[name='express']").prop({
+			disabled: true
+		})
+} else if (event.target.name === "express") {
+	$("input[name='js-frameworks']").prop({
+		disabled: true
+	})
+} else if (event.target.name === "js-libs") {
+	$("input[name='node']").prop({
+		disabled: true
+	})
+} else if (event.target.name === "node") {
+	$("input[name='js-libs']").prop({
+		disabled: true
+	})
+}
+}); //click
+}//if statements!!!!
+else if($("input").not(":checked")){
+	console.log("NOT checked");
+}
+*/
+
+
+
+
+
+/*
+//Toggle conflicting schedules for activities section
+$(".activities input").click(event, () => {
+	//if (${"input:checked"}) {
+	if($("input[name='js-frameworks']:checked")){
+		console.log("somehow true");
+		$("input[name='express']").prop({
+			disabled: false
+		})
+
+}
+
+
+/* else if (event.target.name === "js-frameworks") {
+	$("input[name='express']").prop({
+		disabled: true
+	})
+} else if (event.target.name === "node") {
+	$("input[name='js-libs']").prop({
+		disabled: true
+	})
+} else if (event.target.name === "js-libs") {
+	$("input[name='node']").prop({
+		disabled: true
+	})
+}*/
+/*}); //click
+*/
 
 }); //document.ready
