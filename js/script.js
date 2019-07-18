@@ -11,21 +11,24 @@ $(document).ready(() => {
 	btn.click(event, () => {
 		event.preventDefault();
 	});
+
+	$("form:last-child").append("<h4 class='review-form'> * Review The Form For Errors Before Submitting</h4>");
+  $(".review-form").hide();
 	const valid = () => {
 		btn.css("border", black);
 		btn.prop("disable", false);
-		$(".review-form").remove();
+		$(".review-form").hide();
 	};
 	const invalid = () => {
 		btn.css("border", orange);
 		btn.prop("disable", true);
-		$("form:last-child").append("<h4 class='review-form'> * Review The Form For Errors Before Submitting</h4>");
+		$(".review-form").show();
 		$(".review-form").css("color", "#ed723c");
-	};
+};//invalid
 	/**********************************************
 		N A M E
 	**********************************************/
-	/*
+/*
 		name.focus();
 		if (name.val().length === 0) {
 			name.css("border", orange);
@@ -40,11 +43,11 @@ $(document).ready(() => {
 				valid();
 			} //else
 		}); //keyup
-		*/
+*/
 	/**********************************************
 			E M A I L
 		**********************************************/
-	/*
+/*
 		if (email.val().length === 0) {
 			email.css("border", orange);
 			invalid();
@@ -60,11 +63,11 @@ $(document).ready(() => {
 				invalid();
 			}
 		});
-	*/
+*/
 	/***********************************************
 		J O B    R O L E
 	**********************************************/
-	/*
+/*
 	$("#other-title").hide();
 	//upon changing the selection drop down, show text field
 	$("#title").change(event, () => {
@@ -74,10 +77,11 @@ $(document).ready(() => {
 			$("#other-title").hide();
 		}
 	}); //change
-	/***********************************************
+	*/
+	/**********************************************
 		T S H I R T S
 	**********************************************/
-	/*
+/*
 	//create a default option for the Color choices
 	$("#color").prepend(`<option value="other" selected>Choose a color</option>`);
 	//if selecting js puns hide just tshirt, else show puns
@@ -104,11 +108,17 @@ $(document).ready(() => {
 		}
 	}); //change
 	*/
+
+
+
+
+
+
 	/**********************************************
 		A C T I V I T I E S
 	**********************************************/
 	//Create a calculator for the total activity costs
-	/*
+
 	let calcTotal = 0;
 	$(".activities").append(`<h4>TOTAL: </h4>`);
 	$(".activities input").change(event, () => {
@@ -121,7 +131,12 @@ $(document).ready(() => {
 			calcTotal -= Number(prices);
 			$(".activities h4").html(`TOTAL $${calcTotal}`);
 		}
+		if(calcTotal>0){
+			valid();
+			$(".activities h3").remove();
+		}
 	}); //change
+
 
 btn.click(()=>{
 	if(calcTotal === 0){
@@ -133,126 +148,43 @@ btn.click(()=>{
 		valid();
 	}
 }); //click
-*/
 
 
-/*
-//Toggle conflicting schedules for activities section
-$(".activities input").click(event, () => {
-	if (event.target.name === "js-frameworks") {
-
-		$("input[name='express']").prop({
-			disabled: true
-		})
-
-		$("input[name='express']").prop().toggle()
-	//	$("input[type='checkbox']:checked").click(()=>{
-		//	$("input[name='express']").prop({
-		//		disabled: false
-		//	})
-	//	});
-
-	} else if (event.target.name === "express") {
-		$("input[name='js-frameworks']").prop({
-			disabled: true
-		})
-	} else if (event.target.name === "js-libs") {
-		$("input[name='node']").prop({
-			disabled: true
-		})
-	} else if (event.target.name === "node") {
-		$("input[name='js-libs']").prop({
-			disabled: true
-		})
-	}
-}); //change
-
-*/
-
-
+let js = "input[name='js-frameworks']";
+let libs = "input[name='js-libs']";
+let node = "input[name='node']";
+let exp = "input[name='express']";
 
 $(".activities input").change(event, ()=>{
-//	if(event.target.checked){console.log("TOTALLY checked");
-	//if((event.target).is(":checked")){console.log("TOTALLY checked");
-	if (event.target.name === "js-frameworks" && event.target.checked) {
-		$("input[name='express']").prop({
-			disabled: true
-		})
-//}//if
-}//if
-	else if(event.target.checked){
-		console.log("NOT checked");
-									if (event.target.name === "express") {
-									 $("input[name='js-frameworks']").prop({
-										 disabled: true
-									 })
-									}//if
+	if (event.target.name === "js-frameworks" && event.target.checked){
+		$(js).prop({disabled: false});
+		$(exp).prop({disabled: true});
+	}
+		else if(event.target.name === "js-frameworks"){
+			$(exp).prop({disabled: false});
+		}
+		if (event.target.name === "express" && event.target.checked){
+			$(exp).prop({disabled: false});
+			$(js).prop({disabled: true});
+		}
+			else if(event.target.name === "express"){
+				$(js).prop({disabled: false});
+			}
 
-		}//else  if
+  if (event.target.name === "js-libs" && event.target.checked){
+		$(libs).prop({disabled: false});
+		$(node).prop({disabled: true});
+	}
+		else if(event.target.name === "js-libs"){
+			$(node).prop({disabled: false});
+		}
+		if (event.target.name === "node" && event.target.checked){
+			$(node).prop({disabled: false});
+			$(libs).prop({disabled: true});
+		}
+			else if(event.target.name === "node"){
+				$(libs).prop({disabled: false});
+			}
 });//change
-/*
-if($("input").is(":checked")){console.log("TOTALLY checked");
-//	if($(".activities input").is(":checked")){
-
-//Toggle conflicting schedules for activities section
-console.log("this is fine");
-$(".activities input").click(event, () => {
-	console.log("OK im here");
-	if (event.target.name === "js-frameworks") {
-		$("input[name='express']").prop({
-			disabled: true
-		})
-} else if (event.target.name === "express") {
-	$("input[name='js-frameworks']").prop({
-		disabled: true
-	})
-} else if (event.target.name === "js-libs") {
-	$("input[name='node']").prop({
-		disabled: true
-	})
-} else if (event.target.name === "node") {
-	$("input[name='js-libs']").prop({
-		disabled: true
-	})
-}
-}); //click
-}//if statements!!!!
-else if($("input").not(":checked")){
-	console.log("NOT checked");
-}
-*/
-
-
-
-
-
-/*
-//Toggle conflicting schedules for activities section
-$(".activities input").click(event, () => {
-	//if (${"input:checked"}) {
-	if($("input[name='js-frameworks']:checked")){
-		console.log("somehow true");
-		$("input[name='express']").prop({
-			disabled: false
-		})
-
-}
-
-
-/* else if (event.target.name === "js-frameworks") {
-	$("input[name='express']").prop({
-		disabled: true
-	})
-} else if (event.target.name === "node") {
-	$("input[name='js-libs']").prop({
-		disabled: true
-	})
-} else if (event.target.name === "js-libs") {
-	$("input[name='node']").prop({
-		disabled: true
-	})
-}*/
-/*}); //click
-*/
 
 }); //document.ready
