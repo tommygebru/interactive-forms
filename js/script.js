@@ -118,7 +118,7 @@ $(document).ready(() => {
 		A C T I V I T I E S
 	**********************************************/
 	//Create a calculator for the total activity costs
-
+/*
 	let calcTotal = 0;
 	$(".activities").append(`<h4>TOTAL: </h4>`);
 	$(".activities input").change(event, () => {
@@ -187,11 +187,190 @@ $(".activities input").change(event, ()=>{
 			}
 });//change
 
-
+*/
 /**********************************************
 	P A Y M E N T S
 **********************************************/
+const paypal = $("#credit-card").next();
+const bitcoin = $("#credit-card").next().next();
+paypal.attr("id", "paypal");
+bitcoin.attr("id", "bitcoin");
+$("#credit-card").show();
+$("#paypal").hide();
+$("#bitcoin").hide();
+$("#payment option:first-of-type").remove();
+
+
+//Dynamically toggle the payment options based on selection
+$("#payment").change(event, () => {
+	//if selection is credit card
+	//remove any current links
+	if (event.target.value === "credit card") {
+		$("#credit-card").show();
+		$("#paypal").hide();
+		$("#bitcoin").hide();
+	}
+	//if selection is paypal
+	//set the link of the register button to paypal
+	else if (event.target.value === "paypal") {
+		$("#credit-card").hide();
+		$("#paypal").show();
+		$("#bitcoin").hide();
+	}
+	//if selection is bitcoin
+	//set the link of the register button to coinbase
+	else if (event.target.value === "bitcoin") {
+		$("#credit-card").hide();
+		$("#paypal").hide();
+		$("#bitcoin").show();
+	}
+});
+
+
+document.getElementById('cc-num').setAttribute('maxlength', 16);
+document.getElementById('zip').setAttribute('maxlength', 5);
+document.getElementById('cvv').setAttribute('maxlength', 3);
+//select the first option >> credit card
+//validate for empty values
+//validate for correct values
 
 
 
+
+/*
+$("#payment option").first().is(":selected");
+$("#payment input").change(()=>{
+if($("#cc-num").val().length===0){invalid(); $("#cc-num").css("border", orange);}
+if($("#zip").val().length===0){invalid(); $("#zip").css("border", orange);}
+if($("#cvv").val().length===0){invalid(); $("#cvv").css("border", orange);}
+});//change
+*/
+//let val1= $("#cc-num").val().length===0;
+//let val2= $("#zip").val().length===0;
+//let val3= $("#cvv").val().length===0;
+
+
+$("fieldset:last-of-type legend").prepend(`<h3 class='cc-fields'>* Fill out all fields</h3>`);
+$(".cc-fields").css("color", "#ed723c");
+$(".cc-fields").hide();
+/*
+
+btn.click(()=>{
+	if(val1){
+		console.log("1");
+		$(".cc-fields").show();
+	}else{$(".cc-fields").hide();
+}
+	if(val2){
+		console.log("2");
+		$(".cc-fields").show();
+	}else{$(".cc-fields").hide();
+}
+	if(val3){
+		console.log("3");
+		$(".cc-fields").show();
+	}else{$(".cc-fields").hide();
+}
+});//click
+*/
+
+let val1= $("#cc-num").val().length>0;
+let val2= $("#zip").val().length>0;
+let val3= $("#cvv").val().length>0;
+
+
+
+
+
+
+
+
+
+$("#cc-num").keyup(() => {
+	$("#credit-card input").not($("#cc-num")).css("border", blue);
+	let regex = /([0-9]{13,16})/;let stringIs = $("#cc-num").val();let bool = regex.test(stringIs);
+	if (bool) {$("#cc-num").css("border", blue);valid();}//if
+	else {$("#cc-num").css("border", orange);invalid();}//else
+});//keyup
+
+btn.click(()=>{
+	if(val1){
+		$(".cc-fields").hide();
+	}else{$(".cc-fields").show(); invalid();
+}
+});//click
+
+$("#zip").keyup(() => {
+	$("#credit-card input").not($("#zip")).css("border", blue);
+	let regex = /([0-9]{5})/;let stringIs = $("#zip").val();let bool = regex.test(stringIs);
+	if (bool) {$("#zip").css("border", blue);valid();} //if
+	else {$("#zip").css("border", orange);invalid();} //else
+}); //keyup
+
+btn.click(()=>{
+	if(val2){
+		$(".cc-fields").hide();
+	}else{$(".cc-fields").show(); invalid();
+}
+});//click
+
+
+
+$("#cvv").keyup(() => {
+	$("#credit-card input").not($("#cvv")).css("border", blue);
+	let regex = /([0-9]{3})/;let stringIs = $("#cvv").val();let bool = regex.test(stringIs);
+	if (bool) {$("#cvv").css("border", blue);valid();} //if
+	else {$("#cvv").css("border", orange);invalid();} //else
+}); //keyup
+
+btn.click(()=>{
+	if(val3){
+		$(".cc-fields").hide();
+	}else{$(".cc-fields").show(); invalid();
+}
+});//click
+
+
+
+
+//$("#cc-num").focus();
+//$("#payment option:first").is(":selected");
+
+/*
+$("#payment option").change(event, () => {
+
+		document.getElementById('cc-num').setAttribute('maxlength', 16);
+		$("#cc-num").keyup(() => {
+			$("#credit-card input").not($("#cc-num")).css("border", blue);
+			let regex = /([0-9]{13,16})/;let stringIs = $("#cc-num").val();let bool = regex.test(stringIs);
+			if (bool) {$("#cc-num").css("border", blue);valid();$("#zip").focus();}//if
+			else {$("#cc-num").css("border", orange);invalid();}//else
+		}); //keyup
+
+		document.getElementById('zip').setAttribute('maxlength', 5);
+		$("#zip").keyup(() => {
+			$("#credit-card input").not($("#zip")).css("border", blue);
+			let regex = /([0-9]{5})/;let stringIs = $("#zip").val();let bool = regex.test(stringIs);
+			if (bool) {$("#zip").css("border", blue);valid();$("#cvv").focus();} //if
+			else {$("#zip").css("border", orange);invalid();} //else
+		}); //keyup
+
+		document.getElementById('cvv').setAttribute('maxlength', 3);
+		$("#cvv").keyup(() => {
+			$("#credit-card input").not($("#cvv")).css("border", blue);
+			let regex = /([0-9]{3})/;let stringIs = $("#cvv").val();let bool = regex.test(stringIs);
+			if (bool) {$("#cvv").css("border", blue);valid();}
+			else {$("#cvv").css("border", orange);invalid();} //else
+		}); //keyup
+
+
+
+//	 else {
+//		valid();
+//	} //else
+}); //change
+
+
+
+*/
 }); //document.ready
