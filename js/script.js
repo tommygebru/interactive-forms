@@ -197,16 +197,10 @@ $("#payment option:first-of-type").remove();
 
 //Dynamically toggle the payment options based on selection
 $("#payment").change(event, () => {
-	//if selection is credit card
-	//remove any current links
-	if (event.target.value === "credit card") {
-		$("#credit-card").show();
-		$("#paypal").hide();
-		$("#bitcoin").hide();
-	}
+
 	//if selection is paypal
 	//set the link of the register button to paypal
-	else if (event.target.value === "paypal") {
+	if (event.target.value === "paypal") {
 		$("#credit-card").hide();
 		$("#paypal").show();
 		$("#bitcoin").hide();
@@ -218,7 +212,14 @@ $("#payment").change(event, () => {
 		$("#paypal").hide();
 		$("#bitcoin").show();
 	}
-});
+
+	//if selection is credit card
+	//remove any current links
+	//begin credit card validation!!
+	if (event.target.value === "credit card") {
+		$("#credit-card").show();
+		$("#paypal").hide();
+		$("#bitcoin").hide();
 
 
 const $ccnum = document.getElementById('cc-num');
@@ -280,5 +281,11 @@ $("#cvv").keyup(() => {
 	if (bool) {$("#cvv").css("border", blue);valid();  $(".cc-fields").hide();} //if
 	else {$("#cvv").css("border", orange);invalid();$(".cc-fields").show(); } //else
 }); //keyup
+
+
+
+}//if statement
+});//change event for payments section
+
 
 }); //document.ready
