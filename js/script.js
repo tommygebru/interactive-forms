@@ -26,7 +26,7 @@ $(document).ready(() => {
 	}; //invalid
 	/**********************************************
 		N A M E
-	**********************************************
+	**********************************************/
 		name.focus();
 			btn.click(()=>{
 //validate the name field upon click
@@ -47,7 +47,7 @@ $(document).ready(() => {
 			});//keyup
 	/**********************************************
 			E M A I L
-		**********************************************
+	**********************************************/
 			btn.click(()=>{
 //validate the email field upon click
 				if(email.val().length === 0){
@@ -96,9 +96,12 @@ email.keyup(()=>{
 	$("#color").prepend(`<option value="other" selected>Choose a color</option>`);
 	//if selecting js puns hide just tshirt, else show puns
 	//$("#color option:not(option[value='other'])").hide();
+	$("#colors-js-puns").hide();
 	$("#color option").hide();
-	$("#color option:first").show();
+
 	$("#design").change(event, () => {
+		$("#colors-js-puns").show();
+			$("#color option:first").show();
 		if (event.target.value === "js puns") {
 			$("option[value='tomato']").hide();
 			$("option[value='steelblue']").hide();
@@ -117,7 +120,7 @@ email.keyup(()=>{
 	}); //change
 	/**********************************************
 		A C T I V I T I E S
-	**********************************************
+	**********************************************/
 	//Create a calculator for the total activity costs
 
 	let calcTotal = 0;
@@ -226,7 +229,7 @@ else if (event.target.value === "credit card"){
 	creditcard.show();
 	paypal.hide();
 	bitcoin.hide();
-	invalid();}
+}
 	});//PAYMENT CHANGE EVENT
 
 		const $ccnum = document.getElementById('cc-num');
@@ -247,7 +250,6 @@ else if (event.target.value === "credit card"){
 		$ccfields.hide();
 
 		$ccnum.selected = true;
-		console.log("i SET ccnum to selected via the DOM");
 
 
 		btn.click(event, () => {
@@ -256,7 +258,6 @@ else if (event.target.value === "credit card"){
 				invalid();
 				$ccfields.show();
 			} else {
-				console.log("there are some values in the INPUT methods");
 				//recreate regex with DOM IF TRUE ---- REMOVE ERROR MESSAGES!!
 				let stringcc = $ccnum.value;
 				let boolcc = regexcc.test(stringcc);
@@ -273,47 +274,47 @@ else if (event.target.value === "credit card"){
 				}
 			} //outer else
 		}); //btn click event
-		$ccnum.keyup(() => {
-			$("#credit-card input").not($ccnum.css("border", blue));
+		$("#cc-num").keyup(() => {//use jquery
+			$("#credit-card input").not($ccnum.style.border = blue);
 			let stringIs = $ccnum.value;
 			let bool = regexcc.test(stringIs);
 			if (bool) {
-				$ccnum.css("border", blue);
+				$ccnum.style.border = blue;
 				valid();
 				$ccfields.hide();
 			} //if
 			else {
-				$ccnum.css("border", orange);
+				$ccnum.style.border = orange;
 				invalid();
 				$ccfields.show();
 			} //else
 		}); //keyup
-		$zip.keyup(() => {
-			$("#credit-card input").not($zip.css("border", blue));
+		$("#zip").keyup(() => {
+			$("#credit-card input").not($zip.style.border = blue);
 			let stringIs = $zip.value;
 			let bool = regexzip.test(stringIs);
 			if (bool) {
-				$zip.css("border", blue);
+				$zip.style.border = blue;
 				valid();
 				$ccfields.hide();
 			} //if
 			else {
-				$zip.css("border", orange);
+				$zip.style.border = orange;
 				invalid();
 				$ccfields.show();
 			} //else
 		}); //keyup
-		$cvv.keyup(() => {
-			$("#credit-card input").not($cvv.css("border", blue));
+		$("#cvv").keyup(() => {
+			$("#credit-card input").not($cvv.style.border = blue);
 			let stringIs = $cvv.value;
 			let bool = regexcvv.test(stringIs);
 			if (bool) {
-				$cvv.css("border", blue);
+				$cvv.style.border = blue;
 				valid();
 				$ccfields.hide();
 			} //if
 			else {
-				$cvv.css("border", orange);
+				$cvv.style.border = orange;
 				invalid();
 				$ccfields.show();
 			} //else
