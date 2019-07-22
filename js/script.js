@@ -2,15 +2,14 @@ $(document).ready(() => {
 	/**********************************************
 		B A S E
 	**********************************************/
+	$("body").css("background", "linear-gradient(to bottom right, #f5f2e6, #fcc4a8)");
 	const orange = "solid #ed723c 2px";
 	const black = "solid black 2px";
 	const blue = "solid #5e97b0 2px";
 	const name = $("#name");
 	const btn = $("button");
 	const email = $("#mail");
-	btn.click(event, () => {
-		event.preventDefault();
-	});
+
 	$("form:last-child").append("<h4 class='review-form'> * Review The Form For Errors Before Submitting</h4>");
 	$(".review-form").hide();
 	const valid = () => {
@@ -23,6 +22,8 @@ $(document).ready(() => {
 		btn.prop("disable", true);
 		$(".review-form").show();
 		$(".review-form").css("color", "#ed723c");
+
+			event.preventDefault();
 	}; //invalid
 	/**********************************************
 		N A M E
@@ -206,31 +207,7 @@ $(".activities input").change(event, ()=>{
 	bitcoin.hide();
 	$("#payment option:first-of-type").remove();
 
-	//Dynamically toggle the payment options based on selection
-	$("#payment").change(event, () => {
-		//set the link of the register button to paypal
-		if (event.target.value === "paypal") {
-			console.log("pp is selected");
-			creditcard.hide();
-			paypal.show();
-			bitcoin.hide();
-			valid();
-		}
-		//set the link of the register button to coinbase
-		else if (event.target.value === "bitcoin") {
-			console.log("btc is selected");
-			creditcard.hide();
-			paypal.hide();
-			bitcoin.show();
-			valid();
-		}
-else if (event.target.value === "credit card"){
-	console.log("cc is selected");
-	creditcard.show();
-	paypal.hide();
-	bitcoin.hide();
-}
-	});//PAYMENT CHANGE EVENT
+
 
 		const $ccnum = document.getElementById('cc-num');
 		const $zip = document.getElementById('zip');
@@ -250,11 +227,41 @@ else if (event.target.value === "credit card"){
 		$ccfields.hide();
 
 		$ccnum.selected = true;
+		//Dynamically toggle the payment options based on selection
+		$("#payment").change(event, () => {
+			//set the link of the register button to paypal
+			if (event.target.value === "paypal") {
+				console.log("pp is selected");
+				$ccnum.selected = false;
+
+				creditcard.hide();
+				paypal.show();
+				bitcoin.hide();
+			}
+			//set the link of the register button to coinbase
+			else if (event.target.value === "bitcoin") {
+				console.log("btc is selected");
+				$ccnum.selected = false;
+
+				creditcard.hide();
+				paypal.hide();
+				bitcoin.show();
+			}
+	else if (event.target.value === "credit card"){
+		console.log("cc is selected");
+		creditcard.show();
+		paypal.hide();
+		bitcoin.hide();
+	}
+		});//PAYMENT CHANGE EVENT
 
 
 		btn.click(event, () => {
+			if($ccnum.selected === true){
+				console.log("btn clicked and ccnum is selected");
 			if ($ccnum.value === "" && $zip.value === "" && $cvv.value === "") {
 				console.log("all fields empty on click event, therefore make invalid");
+				$("#cc-num").focus();
 				invalid();
 				$ccfields.show();
 			} else {
@@ -273,6 +280,7 @@ else if (event.target.value === "credit card"){
 					$ccfields.show();
 				}
 			} //outer else
+		}//CCNUM IS SELECTED
 		}); //btn click event
 		$("#cc-num").keyup(() => {//use jquery
 			$("#credit-card input").not($ccnum.style.border = blue);
@@ -282,6 +290,7 @@ else if (event.target.value === "credit card"){
 				$ccnum.style.border = blue;
 				valid();
 				$ccfields.hide();
+				$("#zip").focus();
 			} //if
 			else {
 				$ccnum.style.border = orange;
@@ -297,6 +306,7 @@ else if (event.target.value === "credit card"){
 				$zip.style.border = blue;
 				valid();
 				$ccfields.hide();
+				$("#cvv").focus();
 			} //if
 			else {
 				$zip.style.border = orange;
