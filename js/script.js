@@ -3,6 +3,7 @@ $(document).ready(() => {
 		B A S E
 	**********************************************/
 	$("body").css("background", "linear-gradient(to bottom right, #f5f2e6, #fcc4a8)");
+	$("body").css("padding-bottom", "80px");
 	const orange = "solid #ed723c 2px";
 	const black = "solid black 2px";
 	const blue = "solid #5e97b0 2px";
@@ -49,21 +50,32 @@ $(document).ready(() => {
 	/**********************************************
 			E M A I L
 	**********************************************/
+			//Provide an email address
+			$("fieldset:first-of-type").prepend("<h4 id='review-email'> * Provide an email address</h4>");
+			$("#review-email").css("color", "#ed723c");
+			$("#review-email").hide();
+			/*$("fieldset:first-of-type").prepend("<h4 id='review-email2'> * Provide a valid email address</h4>");
+			$("#review-email2").css("text-shadow", ".5px .5px .5px navy");
+			$("#review-email2").css("color", "#dd723c");
+			$("#review-email2").hide();*/
 			btn.click(()=>{
 //validate the email field upon click
 				if(email.val().length === 0){
 					invalid();
 					email.css("border", orange);
+					$("#review-email").show();
 				}
 				let stringmail = email.val();
 				let regexmail = /^([a-z]+\@[a-z]+\.com)$/i;
 				if (regexmail.test(stringmail)){
 					email.css("border", blue);
 					valid();
+					$("#review-email").hide();
 				}//if
 				else{
 					invalid();
 					email.css("border", orange);
+					$("#review-email").show();
 				}//else
 			});//click
 //validate upon keyup
@@ -72,10 +84,16 @@ email.keyup(()=>{
 	let regexmail = /^([a-z]+\@[a-z]+\.com)$/i;
 	if (regexmail.test(stringmail)){
 		email.css("border", blue);
-			valid();}
+			valid();
+			$("#review-email").hide();
+		}
 			else{
 				email.css("border", orange);
 				invalid();
+				$("#review-email").html("* Provide a valid email address");
+				$("#review-email").css("text-indent", ".8em");
+				$("#review-email").show();
+
 			}
 });//keyup
 	/***********************************************
@@ -94,7 +112,7 @@ email.keyup(()=>{
 		T S H I R T S
 	**********************************************/
 	//create a default option for the Color choices
-	$("#color").prepend(`<option value="other" selected>Choose a color</option>`);
+	$("#color").prepend(`<option value="other" selected>Please select a T-shirt theme</option>`);
 	//if selecting js puns hide just tshirt, else show puns
 	//$("#color option:not(option[value='other'])").hide();
 	$("#colors-js-puns").hide();
